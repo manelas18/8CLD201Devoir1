@@ -24,22 +24,22 @@ steps:
   - script: 
       echo $(CloudInitContent)
 
-- task: AzureResourceManagerTemplateDeployment@3
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'Azure subscription 1(0fcbc58f-03c0-4daa-9470-840cff312d29)'
-    subscriptionId: '0fcbc58f-03c0-4daa-9470-840cff312d29'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'Ressource1'
-    location: 'France Central'
-    templateLocation: 'Linked artifact'
-    csmFile: '$(Build.SourcesDirectory)\AzureResourceGroup1\azuredeploy.json'
-    csmParametersFile: '$(Build.SourcesDirectory)\AzureResourceGroup1\azuredeploy.parametersjson'
-    overrideParameters: '-customData $(CloudInitContent)'
-    deploymentMode: 'Incremental'
+  - task: AzureResourceManagerTemplateDeployment@3
+    inputs:
+      deploymentScope: 'Resource Group'
+      azureResourceManagerConnection: 'Azure subscription 1(0fcbc58f-03c0-4daa-9470-840cff312d29)'
+      subscriptionId: '0fcbc58f-03c0-4daa-9470-840cff312d29'
+      action: 'Create Or Update Resource Group'
+      resourceGroupName: 'Ressource1'
+      location: 'France Central'
+      templateLocation: 'Linked artifact'
+      csmFile: '$(Build.SourcesDirectory)\AzureResourceGroup1\azuredeploy.json'
+      csmParametersFile: '$(Build.SourcesDirectory)\AzureResourceGroup1\azuredeploy.parametersjson'
+      overrideParameters: '-customData $(CloudInitContent)'
+      deploymentMode: 'Incremental'
 
 
-- task: AzureKeyVault@2
+  - task: AzureKeyVault@2
     inputs:
       azureSubscription: 'Azure subscription 1(0fcbc58f-03c0-4daa-9470-840cff312d29)'
       KeyVaultName: 'MonCoffre1'
@@ -47,10 +47,9 @@ steps:
       RunAsPreJob: false
 
 
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Write your PowerShell commands here.
-      
-      Write-Host "password=$(mssuser1)
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        # Write your PowerShell commands here.
+        Write-Host $(mssuser1)
