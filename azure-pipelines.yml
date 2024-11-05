@@ -35,7 +35,7 @@ steps:
     inputs:
       azureSubscription: 'Azure subscription 1(0fcbc58f-03c0-4daa-9470-840cff312d29)'
       KeyVaultName: 'MonCoffre1'
-      SecretsFilter: 'mssuser1'
+      SecretsFilter: '*'
       RunAsPreJob: true
 
 
