@@ -18,7 +18,7 @@ steps:
         # write your powershell command here.
         write-Host $(Build.SourcesDirectory)
         $CloudContent=$(Get-Content -Path $(Build.SourcesDirectory)\AzureResourceGroup1\Cloud-Init.txt -Raw)
-        write-Host $CloudContent
+        write-Host "Content=$CloudContent"
         $encodedContent =$([Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($CloudContent)))
         write-Host $encodedContent
         write-Host "##vso[task.setvariable variable=CloudInitContent;]$encodedContent"
