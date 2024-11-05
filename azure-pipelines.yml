@@ -16,32 +16,24 @@ steps:
       targetType: 'inline'
       script: 
         # write your powershell command here.
-        $CloudContent= Get-Content -Path .\AzureResourceGroup1\Cloud-Init.txt -Raw
-        write-Host $CloudContent
-        $encodedContent = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($CloudContent))
+        write-Host $(Build.SourcesDirectory)
+
+        $CloudContent=Get-Content -Path $(Build.SourcesDirectory)\AzureResourceGroup1\Cloud-Init.txt -Raw
+
+        write-Host "Content=$CloudContent"
+
+        $encodedContent =$([Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($(Get-Content -Path $(Build.SourcesDirectory)\AzureResourceGroup1\Cloud-Init.txt -Raw))))
+        
         write-Host $encodedContent
+
         write-Host "##vso[task.setvariable variable=CloudInitContent;]$encodedContent"
+        
   - script: 
       echo $(CloudInitContent)
 
-  - task: AzureResourceManagerTemplateDeployment@3
-    inputs:
-      deploymentScope: 'Resource Group'
-      azureResourceManagerConnection: 'Azure subscription 1(0fcbc58f-03c0-4daa-9470-840cff312d29)'
-      subscriptionId: '0fcbc58f-03c0-4daa-9470-840cff312d29'
-      action: 'Create Or Update Resource Group'
-      resourceGroupName: 'Ressource1'
-      location: 'France Central'
-      templateLocation: 'Linked artifact'
-      csmFile: '$(Build.SourcesDirectory)\AzureResourceGroup1\azuredeploy.json'
-      csmParametersFile: '$(Build.SourcesDirectory)\AzureResourceGroup1\azuredeploy.parametersjson'
-      overrideParameters: '-customData $(CloudInitContent)'
-      deploymentMode: 'Incremental'
-
-
   - task: AzureKeyVault@2
     inputs:
-      azureSubscription: 'Azure subscription 1(0fcbc58f-03c0-4daa-9470-840cff312d29)'
+      azureSubscription: 'Azure subscription 1(2)(0fcbc58f-03c0-4daa-9470-840cff312d29)'
       KeyVaultName: 'MonCoffre1'
       SecretsFilter: 'mssuser1'
       RunAsPreJob: false
