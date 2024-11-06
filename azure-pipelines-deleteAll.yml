@@ -10,11 +10,12 @@ pool: "default"
 
 variables:
 - name: SubscriptionID
-  value: 0fcbc58f-03c0-4daa-9470-840cff312d29
+  value: '0fcbc58f-03c0-4daa-9470-840cff312d29'
 
+steps:
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'Azure subscription 1'
+    azureSubscription: 'Azure subscription 1(0fcbc58f-03c0-4daa-9470-840cff312d29)'
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
     inlineScript: |
