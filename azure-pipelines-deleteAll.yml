@@ -19,11 +19,9 @@ steps:
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      # Lister et supprimer les ressources 
-      az resource list --subscription $(SubscriptionID) --query "[].id" -o tsv 
+      az resource list --subscription $(SubscriptionID) --query "[].id" -o tsv
       $resources = az resource list --subscription $(SubscriptionID) --query "[].id" -o tsv
-      foreach ($resource in $resources)
-      { 
-        write-host $resource 
-        #az resource delete --ids $resource
+      foreach ($resource in $resources) {
+         write-host $resource
+         #az resource delete --ids $resource
       }
