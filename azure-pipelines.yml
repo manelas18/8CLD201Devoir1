@@ -33,7 +33,7 @@ steps:
 
   - task: AzureKeyVault@2
     inputs:
-      azureSubscription: 'Azure subscription 1(1)(0fcbc58f-03c0-4daa-9470-840cff312d29)'
+      azureSubscription: 'spn-azure-devops'
       KeyVaultName: 'MonCoffre1'
       SecretsFilter: '*'
       RunAsPreJob: true
