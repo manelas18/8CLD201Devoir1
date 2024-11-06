@@ -44,4 +44,4 @@ steps:
       targetType: 'inline'
       script: |
         # Write your PowerShell commands here.
-        Write-Host $(mssuser1)
+        Write-Host "password=$(mssuser1)"
