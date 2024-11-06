@@ -18,4 +18,4 @@ steps:
     targetType: 'inline'
     script: |
       write-host "Hello world"
-      az resource list --subscription $(SubscriptionID) --query "[].id" -o ts
+      az resource list --subscription $(SubscriptionID) --query "[].id" -o tsv
