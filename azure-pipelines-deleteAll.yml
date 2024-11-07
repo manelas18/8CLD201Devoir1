@@ -13,9 +13,10 @@ variables:
   value: '0fcbc58f-03c0-4daa-9470-840cff312d29'
 
 steps:
-- task: PowerShell@2
+
+- task: AzureCLI@2
   inputs:
-    targetType: 'inline'
-    script: |
-      write-host "Hello world"
-      az resource list --subscription $(SubscriptionID) --query "[].id" -o tsv
+    azureSubscription: 'spn-azure-devops'
+    scriptType: 'ps'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az resource list --subscription $(SubscriptionID) --query "[].id" -o tsv'
