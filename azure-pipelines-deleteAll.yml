@@ -18,5 +18,5 @@ steps:
   inputs:
     azureSubscription: 'spn-azure-devops'
     scriptType: 'ps'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az resource list --subscription $(SubscriptionID) --query "[].id" -o tsv'
+    scriptLocation: 'scriptPath'
+    scriptPath: '$(Build.SourcesDirectory)\AzureResourceGroup1\test3ps1'
