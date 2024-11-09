@@ -4,5 +4,5 @@ $resources = az resource list --subscription 0fcbc58f-03c0-4daa-9470
 foreach ($resource in $resources)
 { 
   write-host $resource 
-  #az resource delete --ids $resource
+  az resource delete --ids $resource
 }
