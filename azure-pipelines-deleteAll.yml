@@ -19,4 +19,4 @@ steps:
     azureSubscription: 'spn-azure-devops'
     scriptType: 'ps'
     scriptLocation: 'scriptPath'
-    scriptPath: '$(Build.SourcesDirectory)\AzureResourceGroup1\test3.ps1'
+    scriptPath: '$(Build.SourcesDirectory)\AzureResourceGroup1\deleteAllAzure.ps1'
