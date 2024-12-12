@@ -16,7 +16,7 @@ steps:
 
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'spn-azure-devops'
+    azureSubscription: 'Azure subscription 1(0fcbc58f-03c0-4daa-9470-840cff312d29)'
     scriptType: 'ps'
     scriptLocation: 'scriptPath'
     scriptPath: '$(Build.SourcesDirectory)\AzureResourceGroup1\deleteAllAzure.ps1'
